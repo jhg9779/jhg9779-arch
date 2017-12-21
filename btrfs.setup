@@ -1,0 +1,17 @@
+mkfs.vfat -F32 /dev/sda1
+$ mkfs.btrfs -L arch /dev/mapper/root
+$ mkfs.btrfs -L data /dev/sdb1
+$ mkfs.btrfs -L media /dev/sdc1
+mount /dev/mapper/root /mnt
+$ btrfs subvolume create /mnt/ROOT
+$ btrfs subvolume create /mnt/home
+$ umount /mnt
+
+$ mount /dev/sdb1 /mnt
+$ btrfs subvolume create /mnt/data
+$ umount /mnt
+
+$ mount /dev/sdc1 /mnt
+$ btrfs subvolume create /mnt/media
+$ umount /mnt
+
